@@ -5,6 +5,7 @@ const { background, button, buttonHover } = colors
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -15,22 +16,33 @@ export const Container = styled.div`
   border: #333 solid 2px;
   border-radius: 10px;
 `
+export const Section = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`
 
 export const Bet = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: end;
-
-  position: relative;
+  justify-content: space-between;
 
   height: 100%;
   width: 300px;
+`
+
+export const Infos = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px 10px;
 
   h1 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 36px;
+    font-size: 40px;
+  }
+
+  p {
+    font-size: 16px;
   }
 `
 
@@ -55,36 +67,6 @@ export const Input = styled.input`
   text-align: center;
 `
 
-export const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-
-  background: ${background};
-  padding: 5px 15px;
-  border-bottom-left-radius: 10px ;
-`
-
-export const Start = styled.button`
-  background: ${button};
-  font-size: 20px;
-  outline: none;
-  border: none;
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: .2s;
-
-  @media (max-width: 600px) {
-    font-size: 15px;
-  }
-
-  &:hover {
-    background: ${buttonHover};
-    scale: 1.1;
-  }
-`
-
 export const Game = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -93,6 +75,7 @@ export const Game = styled.div`
   background: #212121;
   width: calc(100% - 300px);
   border-radius: 0 10px 10px 0;
+  position: relative;
 
   .back {
     transition: .2s;
@@ -112,4 +95,43 @@ export const Spot = styled.button`
   font-size: 50px;
   border-radius: 10px;
   border: 2px #212121 solid;
+`
+
+export const Footer = styled.div`
+  display: flex;
+
+  width: 100%;
+  background: ${background};
+  border-radius: 0 0 10px 10px;
+  padding: 5px 0`
+
+export const Button = styled.button`
+  background: ${button};
+  font-size: 20px;
+  outline: none;
+  border: none;
+  width: calc(300px - 30px);
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s;
+  margin: 0 15px;
+
+  @media (max-width: 600px) {
+    font-size: 15px;
+  }
+
+  &:hover {
+    background: ${buttonHover};
+    scale: 1.1;
+  }
+`
+
+export const Modal = styled.span`
+  height: 100%;
+  margin: 0 auto;
+  line-height: 40px;
+  font-size: 30px;
+  font-weight: bold;
+  max-width: calc(100% - 270);
 `

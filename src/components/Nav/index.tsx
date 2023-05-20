@@ -3,7 +3,7 @@ import { Container, Logo, Button, Buttons, User, Name, Cash, Add } from "./style
 export const Nav = () => {
   return (
     <Container>
-      <Logo>BET</Logo>
+      <Logo>KASINÃO</Logo>
 
       <Buttons>
         <Button>Mine</Button>
