@@ -12,7 +12,7 @@ export const Nav = () => {
       </Buttons>
 
       <User>
-        <Name>Carlos</Name>
+        <Name>Junior</Name>
         <Cash>R$ 123</Cash>
         <Add>+</Add>
       </User>

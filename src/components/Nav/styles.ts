@@ -11,12 +11,8 @@ export const Container = styled.nav`
   flex-wrap: wrap;
 
   background: ${background};
-  width: 100vw;
+  width: 100%;
   padding: 5px 10px;
-
-  @media (max-width: 466px) {
-    justify-content: space-between;
-  }
 `
 
 export const Logo = styled.h1`

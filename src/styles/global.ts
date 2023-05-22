@@ -16,14 +16,19 @@ export default createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
   }
 
-  #root {
-    margin:0 auto;
-    height: 100%;
+  body {
     background: #202025;
   }
 
-  body {
+  .App {
+
+  }
+  
+  #root {
+    margin: 0 auto;
     height: 100vh;
+    max-width: 100vw;
+    background: #202025;
   }
 
   body, input, button {

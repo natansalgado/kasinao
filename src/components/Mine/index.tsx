@@ -2,22 +2,25 @@ import { useState, useEffect, ChangeEvent } from "react"
 import { Container, Section, Bet, Infos, Main, Label, Input, Footer, Button, Game, Spot, Modal } from "./styles"
 
 interface Board {
-  content: string,
+  id: number
+  content: string
   turned: boolean
 }
 
 export const Mine = () => {
+  const { innerWidth } = window;
+  const [width, setWidth] = useState(innerWidth)
   const [canPlay, setCanPlay] = useState(false)
   const [bombs, setBombs] = useState(5)
   const [value, setValue] = useState(1)
   const [board, setBoard] = useState<Board[]>([])
-  const [modal, setModal] = useState(`x${bombs * 0.05}`)
+  const [modal, setModal] = useState(`x${bombs * 0.05 + 1}`)
   const [times, setTimes] = useState(1)
 
   const changeBombs = (e: ChangeEvent<HTMLInputElement>) => {
     const multiplier = (Number(e.target.value) * 0.05).toFixed(2)
     setBombs(Number(e.target.value))
-    setModal(`x${multiplier}`)
+    setModal(`x${Number(multiplier) + 1}`)
   }
 
   const turnSpot = (index: number, isTurned: boolean, content: string) => {
@@ -34,7 +37,7 @@ export const Mine = () => {
     setBoard(boardCopy)
     if (content === 'diamond') {
       setTimes(times + 1)
-      setModal(`x${multiplier * times} | R$ ${value + (value * multiplier * times)}`)
+      setModal(`x${multiplier * times + 1} | R$ ${value + (value * multiplier * times)}`)
     }
   }
 
@@ -60,7 +63,7 @@ export const Mine = () => {
     const newBoard = []
 
     for (let i = 0; i < 25; i++) {
-      newBoard.push({ content: "diamond", turned: false })
+      newBoard.push({ id: i, content: "diamond", turned: false })
     }
 
     for (let i = 0; i < bombs; i++) {
@@ -94,33 +97,52 @@ export const Mine = () => {
   useEffect(() => {
     const newBoard = []
     for (let i = 0; i < 25; i++) {
-      newBoard.push({ content: "bomb", turned: false })
+      newBoard.push({ id: i, content: "bomb", turned: false })
     }
     setBoard(newBoard)
   }, [])
 
+  useEffect(() => {
+    const updateWindowSize = () => {
+      const newWidth = window.innerWidth
+      setWidth(newWidth)
+    }
+    window.addEventListener('resize', updateWindowSize)
+    return () => window.removeEventListener('resize', updateWindowSize)
+  }, [])
+
   return (
     <Container>
+      {width < 700 &&
+        <Infos>
+          <h1>MINE</h1>
+          <p>Tente acertar onde os diamantes estão escondidos para ganhar.</p>
+          <p>Quanto mais diamantes acertar, maior o prêmio.</p>
+          <p>Quanto mais bombas no campo, maior o multiplicador do prêmio.</p>
+        </Infos>
+      }
       <Section>
-        <Bet>
-          <Infos>
-            <h1>MINE</h1>
-            <p>Tente acertar onde os diamantes estão escondidos para ganhar.</p>
-            <p>Quanto mais diamantes acertar, maior o prêmio.</p>
-            <p>Quanto mais bombas no campo, maior o multiplicador do prêmio.</p>
-          </Infos>
-          <Main>
+        <Main>
+          {width >= 700 &&
+            <Infos>
+              <h1>MINE</h1>
+              <p>Tente acertar onde os diamantes estão escondidos para ganhar.</p>
+              <p>Quanto mais diamantes acertar, maior o prêmio.</p>
+              <p>Quanto mais bombas no campo, maior o multiplicador do prêmio.</p>
+            </Infos>
+          }
+          <Bet>
             <Label htmlFor="value">Valor da aposta R$</Label>
             <Input id="value" type="number" min={1} value={value} disabled={canPlay} onChange={e => setValue(Number(e.target.value))} />
             <Label htmlFor="bombs">Quantidade de bombas</Label>
             <Input type="number" min={5} max={24} value={bombs} disabled={canPlay} onChange={changeBombs} />
-          </Main>
-        </Bet>
+          </Bet>
+        </Main>
         <Game>
-          {board.map((spot, index) =>
-            <Spot key={index}
+          {board.map((spot) =>
+            <Spot key={spot.id}
               className={!spot.turned && canPlay ? "back" : "turned"}
-              onClick={() => turnSpot(index, spot.turned, spot.content)}
+              onClick={() => turnSpot(spot.id, spot.turned, spot.content)}
             >
               {spot.turned ?
                 spot.content === 'bomb' ? '💣' :

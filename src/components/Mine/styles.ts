@@ -10,25 +10,38 @@ export const Container = styled.div`
   justify-content: center;
 
   background: #212121;
-  height: 500px;
   max-width: 800px;
   margin: 10px auto;
   border: #333 solid 2px;
   border-radius: 10px;
+
+  @media(max-width: 699px) {
+    justify-content: space-between;
+  }
 `
 export const Section = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 500px;
+
+  @media(max-width: 699px) {
+    flex-direction: column-reverse;
+    height: auto;
+  }
 `
 
-export const Bet = styled.div`
+export const Main = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   height: 100%;
   width: 300px;
+
+  @media(max-width: 699px) {
+    width: 100%;
+    justify-content: flex-end;
+  }
 `
 
 export const Infos = styled.div`
@@ -36,6 +49,7 @@ export const Infos = styled.div`
   flex-direction: column;
   gap: 15px;
   padding: 15px 10px;
+  width: 100%;
 
   h1 {
     font-size: 40px;
@@ -43,18 +57,43 @@ export const Infos = styled.div`
 
   p {
     font-size: 16px;
+    line-height: 18px;
+  }
+
+  @media(max-width: 699px) {
+    gap: 5px;
+
+    h1 {
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 14px;
+    }
   }
 `
 
-export const Main = styled.div`
+export const Bet = styled.div`
   display: flex;
   flex-direction: column;
   padding: 15px 10px;
+
+  @media(max-width: 699px) {
+    padding: 15px 10px;
+  }
 `
 
 export const Label = styled.label`
-  font-size: 20px;
+  font-size: 18px;
   line-height: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  @media(max-width: 699px) {
+    font-size: 16px;
+    line-height: 30px;
+  }
 `
 
 export const Input = styled.input`
@@ -65,6 +104,11 @@ export const Input = styled.input`
   padding: 5px 10px;
   border-radius: 10px;
   text-align: center;
+
+  @media(max-width: 699px) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 `
 
 export const Game = styled.div`
@@ -75,7 +119,6 @@ export const Game = styled.div`
   background: #212121;
   width: calc(100% - 300px);
   border-radius: 0 10px 10px 0;
-  position: relative;
 
   .back {
     transition: .2s;
@@ -85,6 +128,19 @@ export const Game = styled.div`
       scale: 1.1;
       filter: brightness(1.4);
     }
+
+    @media(max-width: 699px) {
+      &:hover {
+        scale: 1;
+        filter: brightness(1);
+      }
+    }
+  }
+
+  @media(max-width: 699px) {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    height: 100vw;
   }
 `
 
@@ -95,6 +151,10 @@ export const Spot = styled.button`
   font-size: 50px;
   border-radius: 10px;
   border: 2px #212121 solid;
+
+  @media(max-width: 699px) {
+    font-size: calc(100vw / 5 / 2);
+  }
 `
 
 export const Footer = styled.div`
@@ -103,7 +163,14 @@ export const Footer = styled.div`
   width: 100%;
   background: ${background};
   border-radius: 0 0 10px 10px;
-  padding: 5px 0`
+  padding: 5px 0;
+
+  @media(max-width: 699px) {
+    align-items: center;
+    flex-direction: column-reverse;
+    padding: 5px;
+  }
+`
 
 export const Button = styled.button`
   background: ${button};
@@ -116,14 +183,27 @@ export const Button = styled.button`
   cursor: pointer;
   transition: .2s;
   margin: 0 15px;
-
-  @media (max-width: 600px) {
-    font-size: 15px;
-  }
+  font-weight: bold;
 
   &:hover {
     background: ${buttonHover};
     scale: 1.1;
+  }
+
+  @media(max-width: 699px) {
+    width: 100%;
+    margin: 0;
+    font-size: 18px;
+
+    &:hover {
+      background: ${button};
+      scale: 1;
+    }
+
+    &:active {
+      background: ${buttonHover};
+      scale: 1.1;
+    }
   }
 `
 
@@ -134,4 +214,9 @@ export const Modal = styled.span`
   font-size: 30px;
   font-weight: bold;
   max-width: calc(100% - 270);
+
+  @media(max-width: 699px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
 `
