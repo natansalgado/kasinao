@@ -1,6 +1,9 @@
 import { useState, useEffect, ChangeEvent } from "react"
 import { Container, Section, Bet, Infos, Main, Label, Input, Footer, Button, Game, Spot, Modal } from "./styles"
 
+import { useAppSelector, useAppDispatch } from "../../hooks"
+import { removeCash, addCash } from "../../UserSlice"
+
 interface Board {
   id: number
   content: string
@@ -8,14 +11,16 @@ interface Board {
 }
 
 export const Mine = () => {
-  const { innerWidth } = window;
-  const [width, setWidth] = useState(innerWidth)
+  const [width, setWidth] = useState(window.innerWidth)
   const [canPlay, setCanPlay] = useState(false)
   const [bombs, setBombs] = useState(5)
   const [value, setValue] = useState(1)
   const [board, setBoard] = useState<Board[]>([])
   const [modal, setModal] = useState(`x${bombs * 0.05 + 1}`)
   const [times, setTimes] = useState(1)
+
+  const { cash } = useAppSelector(state => state.user)
+  const dispatch = useAppDispatch()
 
   const changeBombs = (e: ChangeEvent<HTMLInputElement>) => {
     const multiplier = (Number(e.target.value) * 0.05).toFixed(2)
@@ -57,8 +62,14 @@ export const Mine = () => {
       return
     }
 
+    if (cash < value) {
+      setModal('DINHEIRO INSUFICIENTE')
+      return
+    }
+
     setCanPlay(true)
     setModal('')
+    dispatch(removeCash(value))
     const indexes: number[] = []
     const newBoard = []
 
@@ -91,6 +102,7 @@ export const Mine = () => {
 
     setTimes(1)
     setCanPlay(false)
+    dispatch(addCash(value + (multiplier * diamonds)))
     setModal(`🤑 GANHOU R$ ${value + (multiplier * diamonds)} 🤑`)
   }
 
