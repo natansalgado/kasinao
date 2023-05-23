@@ -9,9 +9,9 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  name: 'none',
+  name: '',
   cash: 0,
-  actived: 'mine'
+  actived: 'settings'
 }
 
 export const userSlice = createSlice({
@@ -26,11 +26,14 @@ export const userSlice = createSlice({
     },
     active: (state, action: PayloadAction<string>) => {
       state.actived = action.payload
+    },
+    changeUserName: (state, action: PayloadAction<string>) => {
+      state.name = action.payload
     }
   }
 })
 
-export const { removeCash, addCash, active } = userSlice.actions
+export const { removeCash, addCash, active, changeUserName } = userSlice.actions
 
 export const user = (state: RootState) => state.user.name
 

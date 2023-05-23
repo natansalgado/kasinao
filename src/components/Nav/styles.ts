@@ -59,7 +59,7 @@ export const User = styled.div`
 
 export const Name = styled.p`
   background: ${primary};
-  padding: 10px 10px 10px 15px;
+  padding: 10px 0 10px 15px;
   font-size: 20px;
   border-radius: 10px 0 0 10px;
 
@@ -79,18 +79,18 @@ export const Cash = styled.p`
   }
 `
 
-export const Add = styled.button`
+export const Settings = styled.button`
   background: ${button};
-  padding: 10px 15px 10px 10px;
+  padding: 12px 15px 8px 10px;
   outline: none;
   border: none;
-  font-size: 20px;
+  font-size: 18px;
   transition: .2s;
   cursor: pointer;
   border-radius: 0 10px 10px 0;
 
   @media (max-width: 600px) {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   &:hover {

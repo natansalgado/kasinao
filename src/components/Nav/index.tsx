@@ -1,11 +1,12 @@
-import { Container, Logo, Button, Buttons, User, Name, Cash, Add } from "./styles"
-
+import { Container, Logo, Button, Buttons, User, Name, Cash, Settings } from "./styles"
+import { BsFillGearFill } from 'react-icons/bs'
 import { useAppSelector, useAppDispatch } from '../../hooks'
 import { active } from "../../UserSlice"
 
 export const Nav = () => {
   const { name, cash } = useAppSelector(value => value.user)
   const dispatch = useAppDispatch()
+  const firstName = name.split(' ')[0]
 
   const changeActived = (game: string) => {
     dispatch(active(game))
@@ -22,9 +23,9 @@ export const Nav = () => {
       </Buttons>
 
       <User>
-        <Name>{name}</Name>
+        <Name>{name ? firstName : 'registre-se'}</Name>
         <Cash>R$ {cash.toFixed(2).replace('.', ',')}</Cash>
-        <Add>+</Add>
+        <Settings onClick={() => changeActived('settings')}><BsFillGearFill /></Settings>
       </User>
 
     </Container>
