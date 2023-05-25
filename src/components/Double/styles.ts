@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/global'
 
-const { background, button, buttonHover } = colors
+const { background, button, buttonHover, black } = colors
+
+interface Props {
+  color?: string
+  move?: number
+}
 
 export const Container = styled.div`
   display: flex;
@@ -24,7 +29,7 @@ export const Section = styled.div`
   width: 100%;
   height: 500px;
 
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     flex-direction: column-reverse;
     height: auto;
   }
@@ -38,7 +43,7 @@ export const Main = styled.div`
   height: 100%;
   width: 300px;
 
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     width: 100%;
     justify-content: flex-end;
   }
@@ -78,7 +83,7 @@ export const Bet = styled.div`
   flex-direction: column;
   padding: 15px 10px;
 
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     padding: 15px 10px;
   }
 `
@@ -90,7 +95,7 @@ export const Label = styled.label`
   font-weight: bold;
   letter-spacing: 1px;
 
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     font-size: 16px;
     line-height: 30px;
   }
@@ -105,7 +110,7 @@ export const Input = styled.input`
   border-radius: 10px;
   text-align: center;
 
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     font-size: 16px;
     line-height: 24px;
   }
@@ -113,60 +118,72 @@ export const Input = styled.input`
 
 export const Game = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
 
   height: 100%;
   background: #212121;
   width: calc(100% - 300px);
   border-radius: 0 10px 10px 0;
+  overflow: hidden;
+  position: relative;
 
-  .turned {
-    font-size: 40px;
-    color: #fff;
-
-    &:hover {
-      scale: 1;
-    }
+  .reseting {
+    transition: none;
   }
 
-  .back {
-    transition: .2s;
-    cursor: pointer;
-    
-
-    &:hover {
-      scale: 1.1;
-      filter: brightness(1.4);
-    }
-
-    @media(max-width: 699px) {
-      &:hover {
-        scale: 1;
-        filter: brightness(1);
-      }
-    }
-  }
-
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     width: 100%;
     border-radius: 10px 10px 0 0;
-    height: 100vw;
+    height: calc(100vw / 5);
   }
 `
 
-export const Spot = styled.button`
-  background: #111;
-  height: calc(100% / 5);
-  width: calc(100% / 5);
-  border-radius: 10px;
-  border: 2px #212121 solid;
+export const Arrow = styled.div`
+  height: 20px;
+  width: 20px;
+  background: #333;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50px));
+  z-index: 1;
+  border-radius: 0 0 10px 10px;
+  border: #333 2px solid;
 
-  font-size: 20px;
-  color: #ffffff20;
+  @media(max-width: 799px) {
+    top: 0;
+    transform: translate(-50%, 0);
+    height: calc(100vw / 5 / 6);
+    width: calc(100vw / 5 / 6);
+  }
+`
+
+export const Carousel = styled.div<Props>`
+  display: flex;
+  flex-wrap: nowrap;
+  position: absolute;
+  left: -${props => props.move}px;
+  transition: all 5s ease-out;
+  background: #333;
+`
+
+export const Square = styled.button<Props>`
+  background: ${props => props.color};
   font-weight: 800;
-
-  @media(max-width: 699px) {
-    font-size: calc(100vw / 5 / 5);
+  color: ${props => props.color === black ? '#ffffff20' : '#00000020'};
+  height: 100px;
+  min-width: 99.2px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: 2px #333 solid;
+  
+  @media(max-width: 799px) {
+    font-size: calc(100vw / 5 / 4);
+    min-width: 0px;
+    width: calc((100vw - 4px) / 5);
+    height: calc((100vw - 4px) / 5);
   }
 `
 
@@ -177,8 +194,16 @@ export const Footer = styled.div`
   background: ${background};
   border-radius: 0 0 10px 10px;
   padding: 5px 0;
+  
+  .cantPlay {
+    cursor: default;
+    &:hover {
+      background: ${button};
+      scale: 1;
+    }
+  }
 
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     align-items: center;
     flex-direction: column-reverse;
     padding: 5px;
@@ -203,7 +228,7 @@ export const Button = styled.button`
     scale: 1.1;
   }
 
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     width: 100%;
     margin: 0;
     font-size: 18px;
@@ -228,7 +253,7 @@ export const Modal = styled.span`
   font-weight: bold;
   max-width: calc(100% - 270);
 
-  @media(max-width: 699px) {
+  @media(max-width: 799px) {
     font-size: 20px;
     line-height: 30px;
   }

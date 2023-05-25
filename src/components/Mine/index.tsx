@@ -153,13 +153,13 @@ export const Mine = () => {
         <Game>
           {board.map((spot) =>
             <Spot key={spot.id}
-              className={!spot.turned && canPlay ? "back" : "turned"}
+              className={spot.turned ? "turned" : canPlay ? "back" : ''}
               onClick={() => turnSpot(spot.id, spot.turned, spot.content)}
             >
               {spot.turned ?
                 spot.content === 'bomb' ? '💣' :
                   spot.content === 'diamond' && '💎'
-                : ''
+                : 'K'
               }
             </Spot>
           )}

@@ -4,7 +4,10 @@ export const colors = {
   background: "#EE4266",
   button: "#1116",
   primary: "#1118",
-  buttonHover: "#fff4"
+  buttonHover: "#fff4",
+  red: "#b00000",
+  black: "#202022",
+  white: "#cccccc"
 }
 
 export default createGlobalStyle`
