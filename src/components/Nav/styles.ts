@@ -84,7 +84,7 @@ export const Settings = styled.button`
   padding: 12px 15px 8px 10px;
   outline: none;
   border: none;
-  font-size: 18px;
+  font-size: 19.2px;
   transition: .2s;
   cursor: pointer;
   border-radius: 0 10px 10px 0;

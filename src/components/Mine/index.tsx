@@ -145,9 +145,9 @@ export const Mine = () => {
           }
           <Bet>
             <Label htmlFor="value">Valor da aposta R$</Label>
-            <Input id="value" type="number" min={1} value={value} disabled={canPlay} onChange={e => setValue(Number(e.target.value))} />
+            <Input id="value" type="number" value={value} disabled={canPlay} onChange={e => setValue(Number(e.target.value))} />
             <Label htmlFor="bombs">Quantidade de bombas</Label>
-            <Input type="number" min={5} max={24} value={bombs} disabled={canPlay} onChange={changeBombs} />
+            <Input type="number" value={bombs} disabled={canPlay} onChange={changeBombs} />
           </Bet>
         </Main>
         <Game>

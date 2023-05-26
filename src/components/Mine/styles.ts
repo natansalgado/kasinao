@@ -23,6 +23,8 @@ export const Section = styled.div`
   display: flex;
   width: 100%;
   height: 500px;
+  background: #252525;
+  border-radius: 10px 10px 0 0;
 
   @media(max-width: 699px) {
     flex-direction: column-reverse;
