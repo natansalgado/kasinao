@@ -98,7 +98,6 @@ export const Double = () => {
       setMove(0)
       setCanPlay(true)
       setActived('')
-      setModal('')
     }, 10000)
   }
 
@@ -159,9 +158,9 @@ export const Double = () => {
             <Input id="value" type="number" value={value} disabled={!canPlay} onChange={e => setValue(Number(e.target.value))} />
             <Label htmlFor="bombs">Escolha uma cor</Label>
             <Buttons>
-              <Button canplay={canPlay.toString()} actived={actived === 'red' ? 'true' : 'false'} color={red} onClick={() => canPlay && setActived('red')}>K</Button>
-              <Button canplay={canPlay.toString()} actived={actived === 'black' ? 'true' : 'false'} color={black} onClick={() => canPlay && setActived('black')}>K</Button>
-              <Button canplay={canPlay.toString()} actived={actived === 'white' ? 'true' : 'false'} color={white} onClick={() => canPlay && setActived('white')}>K</Button>
+              <Button disabled={!canPlay} actived={actived === 'red' ? 'true' : 'false'} color={red} onClick={() => canPlay && setActived('red')}>K</Button>
+              <Button disabled={!canPlay} actived={actived === 'black' ? 'true' : 'false'} color={black} onClick={() => canPlay && setActived('black')}>K</Button>
+              <Button disabled={!canPlay} actived={actived === 'white' ? 'true' : 'false'} color={white} onClick={() => canPlay && setActived('white')}>K</Button>
             </Buttons>
           </Bet>
         </Main>
@@ -186,7 +185,7 @@ export const Double = () => {
         </Game>
       </Section>
       <Footer>
-        <Button canplay={canPlay.toString()} className={`${!canPlay && 'cantPlay'}`} onClick={startGame}>INICIAR</Button>
+        <Button disabled={!canPlay} className={`${!canPlay && 'cantPlay'}`} onClick={startGame}>INICIAR</Button>
         <Modal>{modal}</Modal>
       </Footer>
     </Container>

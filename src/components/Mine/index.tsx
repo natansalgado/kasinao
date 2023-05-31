@@ -98,7 +98,10 @@ export const Mine = () => {
       if (spot.turned) diamonds++
     })
 
-    if (diamonds <= 0) return
+    if (diamonds <= 0) {
+      setModal('SELECIONE PELO MENOS UM')
+      return
+    }
 
     setTimes(1)
     setCanPlay(false)
@@ -147,7 +150,7 @@ export const Mine = () => {
             <Label htmlFor="value">Valor da aposta R$</Label>
             <Input id="value" type="number" value={value} disabled={canPlay} onChange={e => setValue(Number(e.target.value))} />
             <Label htmlFor="bombs">Quantidade de bombas</Label>
-            <Input type="number" value={bombs} disabled={canPlay} onChange={changeBombs} />
+            <Input id="bombs" type="number" value={bombs} disabled={canPlay} onChange={changeBombs} />
           </Bet>
         </Main>
         <Game>

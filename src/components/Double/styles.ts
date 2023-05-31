@@ -7,7 +7,6 @@ interface Props {
   color?: string
   move?: number
   actived?: string
-  canplay?: string
   percentage?: number
 }
 
@@ -113,6 +112,10 @@ export const Input = styled.input`
   padding: 5px 10px;
   border-radius: 10px;
   text-align: center;
+
+  &:disabled {
+    opacity: 0.7;
+  }
 
   @media(max-width: 799px) {
     font-size: 16px;
@@ -268,14 +271,6 @@ export const Footer = styled.div`
   background: ${background};
   border-radius: 0 0 10px 10px;
   padding: 5px 0;
-  
-  .cantPlay {
-    cursor: default;
-    &:hover {
-      background: ${button};
-      scale: 1;
-    }
-  }
 
   @media(max-width: 799px) {
     align-items: center;
@@ -297,7 +292,7 @@ export const Button = styled.button<Props>`
   width: calc(300px - 30px);
   padding: 10px;
   border-radius: 10px;
-  cursor: ${({ canplay }) => canplay === 'true' ? 'pointer' : 'default'};
+  cursor: pointer;
   transition: .2s;
   margin: ${({ color }) => color ? 0 : '0 15px'};
   font-weight: ${({ color }) => color ? 800 : 'bold'};
@@ -305,7 +300,17 @@ export const Button = styled.button<Props>`
 
   &:hover {
     background: ${({ color }) => color ? color : buttonHover};
-    scale:  ${({ canplay }) => canplay === 'true' ? 1.1 : 1};
+    scale: 1.1;
+
+    &:disabled {
+      background: ${({ color }) => color ? color : button};
+      scale: 1;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
   }
 
   @media(max-width: 799px) {
@@ -320,7 +325,7 @@ export const Button = styled.button<Props>`
 
     &:active {
       background: ${({ color }) => color ? color : buttonHover};
-      scale:  ${({ canplay }) => canplay === 'true' ? 1.1 : 1};
+      scale:  1.1;
     }
   }
 `
@@ -334,6 +339,7 @@ export const Modal = styled.span`
   max-width: calc(100 % - 270);
 
   @media(max-width: 799px) {
+    min-height: 30px;
     font-size: 20px;
     line-height: 30px;
   }
