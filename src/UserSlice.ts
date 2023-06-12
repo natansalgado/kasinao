@@ -3,15 +3,15 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 
 interface UserState {
-  name: string
   cash: number
   actived: string
+  isMenuOpen: boolean
 }
 
 const initialState: UserState = {
-  name: '',
   cash: 0,
-  actived: 'settings'
+  actived: 'settings',
+  isMenuOpen: false
 }
 
 export const userSlice = createSlice({
@@ -27,14 +27,14 @@ export const userSlice = createSlice({
     active: (state, action: PayloadAction<string>) => {
       state.actived = action.payload
     },
-    changeUserName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload
+    changeMenu: (state) => {
+      state.isMenuOpen = !state.isMenuOpen
     }
   }
 })
 
-export const { removeCash, addCash, active, changeUserName } = userSlice.actions
+export const { removeCash, addCash, active, changeMenu } = userSlice.actions
 
-export const user = (state: RootState) => state.user.name
+export const user = (state: RootState) => state.user
 
 export default userSlice.reducer

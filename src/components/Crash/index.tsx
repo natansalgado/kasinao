@@ -48,9 +48,7 @@ export const Crash = () => {
         setHeight(i)
         if (i >= counterMax - 0.01) {
           setColor("#a00000")
-          setTimeout(() => {
-            setPlaying(false)
-          }, 3000)
+          setPlaying(false)
         }
       }, 2000 * i)
     }

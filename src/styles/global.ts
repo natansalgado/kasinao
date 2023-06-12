@@ -22,10 +22,6 @@ export default createGlobalStyle`
   body {
     background: #202025;
   }
-
-  .App {
-
-  }
   
   #root {
     margin: 0 auto;
@@ -34,7 +30,16 @@ export default createGlobalStyle`
     background: #202025;
   }
 
+  .App {
+    position: relative;
+  }
+
   body, input, button {
     color: #fff;
+  }
+
+  .warning {
+    text-align: center;
+    padding: 0 10px 20px;
   }
 `

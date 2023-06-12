@@ -43,6 +43,7 @@ export const Section = styled.section`
 
   width: 100%;
   padding: 15px;
+  overflow: hidden;
   
   p {
     margin-top: 10px;

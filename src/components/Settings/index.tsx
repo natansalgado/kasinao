@@ -1,28 +1,18 @@
 import { Container, Header, Section, Label, Input, Button, Modal } from './styles'
 import { useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../hooks'
-import { addCash, changeUserName } from '../../UserSlice'
+import { addCash } from '../../UserSlice'
 
 export const Settings = () => {
-  const { name } = useAppSelector(state => state.user)
-  const [userName, setUserName] = useState(name)
+  const { cash } = useAppSelector(state => state.user)
   const [value, setValue] = useState(0)
   const [message, setMessage] = useState('')
 
   const dispatch = useAppDispatch()
 
-  const changeName = () => {
-    if (userName.length < 3) {
-      setMessage('NOME DEVE CONTER PELO MENOS 3 CARACTERES')
-      return
-    }
-    dispatch(changeUserName(userName))
-    setMessage('NOME ATUALIZADO COM SUCESSO')
-  }
-
   const depositMoney = () => {
-    if (!name) {
-      setMessage('REGISTRE UM NOME PARA COMEÇAR')
+    if (cash + value > 1000000) {
+      setMessage('SALDO MÁXIMO DE 1 MILHÃO')
       return
     }
 
@@ -48,11 +38,6 @@ export const Settings = () => {
       <Header>
         <h1>CONFIGURAÇÕES</h1>
       </Header>
-      <Section>
-        <Label htmlFor="name">Nome</Label>
-        <Input type='letter' id='name' value={userName} onChange={e => setUserName(e.target.value)} />
-        <Button onClick={changeName}>SALVAR</Button>
-      </Section>
       <Section>
         <Label htmlFor="value">DEPOSITAR NA CONTA R$</Label>
         <Input type='number' id='value' value={value} onChange={e => setValue(Number(e.target.value))} />
