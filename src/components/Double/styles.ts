@@ -166,6 +166,7 @@ export const Game = styled.div`
     @media(max-width: 799px) {
       height: calc(100vw / 16);
       width: calc(100vw / 16);
+      font-size: calc(100vw / 16 / 2.5);
     }
   }
 `

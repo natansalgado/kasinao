@@ -8,18 +8,16 @@ export const Nav = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <>
-      <Container>
-        <Button>
-          <HiMenu size={24} onClick={() => dispatch(changeMenu())} />
-        </Button>
-        <Logo>KASINÃO</Logo>
+    <Container>
+      <Button>
+        <HiMenu size={24} onClick={() => dispatch(changeMenu())} />
+      </Button>
+      <Logo>KASINÃO</Logo>
 
-        <Cash>
-          <p>R$</p>
-          <p>{cash.toFixed(2).replace('.', ',')}</p>
-        </Cash>
-      </Container>
-    </>
+      <Cash>
+        <p>R$</p>
+        <p>{cash.toFixed(2).replace('.', ',')}</p>
+      </Cash>
+    </Container>
   )
 }

@@ -57,6 +57,7 @@ export const Infos = styled.div`
   padding: 15px 10px;
   width: 100%;
   background: #252525;
+  border-radius: 10px 0 0 0;
 
   h1 {
     font-size: 40px;
@@ -69,6 +70,7 @@ export const Infos = styled.div`
 
   @media(max-width: 699px) {
     gap: 5px;
+    border-radius: 10px 10px 0 0;
 
     h1 {
       font-size: 30px;

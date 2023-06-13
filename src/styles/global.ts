@@ -41,5 +41,10 @@ export default createGlobalStyle`
   .warning {
     text-align: center;
     padding: 0 10px 20px;
+    line-height: 20px;
+
+    @media (max-width: 600px) {
+      text-align: justify;
+    }
   }
 `

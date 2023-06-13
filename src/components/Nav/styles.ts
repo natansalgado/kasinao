@@ -12,6 +12,7 @@ export const Container = styled.nav`
 
   position: sticky;
   top: 0;
+  z-index: 99;
 
   background: ${background};
   width: 100%;
@@ -40,7 +41,7 @@ export const Button = styled.button`
   }
 `
 
-export const Cash = styled.p`
+export const Cash = styled.div`
   display: flex;
   justify-content: space-between;
   background: ${primary};

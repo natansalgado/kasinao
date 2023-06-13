@@ -22,7 +22,9 @@ function App() {
       {actived === 'crash' && <Crash />}
       {actived === 'settings' && <Settings />}
 
-      <p className='warning'><strong>AVISO:</strong> Este projeto tem como objetivo simular um cassino online exclusivamente para proporcionar diversão aos usuários. Em nenhuma circunstância será utilizado dinheiro real neste ambiente! A intenção é garantir uma experiência virtual segura e livre de transações financeiras. Aproveite a emoção dos jogos de cassino sem se preocupar com apostas ou perdas reais!</p>
+      <p className='warning'>
+        <strong>AVISO:</strong> Este projeto tem como objetivo simular um cassino online exclusivamente para proporcionar diversão aos usuários. Em nenhuma circunstância será utilizado dinheiro real neste ambiente! A intenção é garantir uma experiência virtual segura e livre de transações financeiras. Aproveite a emoção dos jogos de cassino sem se preocupar com apostas ou perdas reais!
+      </p>
 
       <GlobalStyles />
     </div>

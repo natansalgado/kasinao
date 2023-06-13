@@ -133,6 +133,10 @@ export const Game = styled.div`
     &:hover {
       scale: 1;
     }
+
+    @media(max-width: 699px) {
+      font-size: calc(100vw / 5 / 2);
+    }
   }
 
   .back {
