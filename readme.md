@@ -30,3 +30,4 @@
 ## CRASH GAME
 ![kanisao crash](https://github.com/natansalgado/kasinao/assets/118204748/4ff2dd11-8341-45ab-b747-486d2729b4b6)
 - Try to stop before the multiplier crashes to win your bonus.
+- You can set a auto stop.
