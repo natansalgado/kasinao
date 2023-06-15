@@ -42,7 +42,7 @@ export const Mine = () => {
     setBoard(boardCopy)
     if (content === 'diamond') {
       setTimes(times + 1)
-      setModal(`x${multiplier * times + 1} | R$ ${value + (value * multiplier * times)}`)
+      setModal(`x${(multiplier * times + 1).toFixed(2)} | R$ ${value + (value * multiplier * times)}`)
     }
   }
 
